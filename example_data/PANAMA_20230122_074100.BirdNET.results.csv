@@ -1,0 +1,9 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,0,3.0,Ramphocelus dimidiatus,Crimson-backed Tanager,0.1395,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,0,3.0,Ramphocelus flammigerus,Flame-rumped Tanager,0.1000,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,26.0,29.0,Brotogeris jugularis,Orange-chinned Parakeet,0.1361,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,4.0,7.0,Passer domesticus,House Sparrow,0.1975,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,40.0,43.0,Thraupis episcopus,Blue-gray Tanager,0.2280,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,48.0,51.0,Hylophilus flavipes,Scrub Greenlet,0.1097,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,50.0,53.0,Thraupis palmarum,Palm Tanager,0.2212,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_074100.wav,50.0,53.0,Thraupis episcopus,Blue-gray Tanager,0.1242,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

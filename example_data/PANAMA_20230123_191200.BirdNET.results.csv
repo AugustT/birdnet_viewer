@@ -1,0 +1,12 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,14.0,17.0,Nyctibius grandis,Great Potoo,0.1054,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,30.0,33.0,Nyctibius grandis,Great Potoo,0.1291,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,4.0,7.0,Megascops choliba,Tropical Screech-Owl,0.1476,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,40.0,43.0,Pulsatrix perspicillata,Spectacled Owl,0.1071,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,42.0,45.0,Nyctibius grandis,Great Potoo,0.1520,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,42.0,45.0,Pulsatrix perspicillata,Spectacled Owl,0.1502,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,42.0,45.0,Megascops choliba,Tropical Screech-Owl,0.1140,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,48.0,51.0,Ciccaba virgata,Mottled Owl,0.1744,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,54.0,57.0,Nyctibius grandis,Great Potoo,0.2390,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,6.0,9.0,Ciccaba virgata,Mottled Owl,0.2018,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_191200.wav,8.0,11.0,Nyctibius grandis,Great Potoo,0.1561,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

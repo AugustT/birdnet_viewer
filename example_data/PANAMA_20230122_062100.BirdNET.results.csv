@@ -1,0 +1,9 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,12.0,15.0,Turdus ignobilis,Black-billed Thrush,0.1475,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,20.0,23.0,Falco rufigularis,Bat Falcon,0.6529,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,34.0,37.0,Tyrannus melancholicus,Tropical Kingbird,0.1118,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,40.0,43.0,Thraupis episcopus,Blue-gray Tanager,0.2928,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,42.0,45.0,Thraupis episcopus,Blue-gray Tanager,0.1049,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,48.0,51.0,Turdus ignobilis,Black-billed Thrush,0.1320,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,6.0,9.0,Tyrannus melancholicus,Tropical Kingbird,0.1310,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_062100.wav,8.0,11.0,Tyrannus melancholicus,Tropical Kingbird,0.3293,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

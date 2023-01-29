@@ -1,0 +1,7 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,22.0,25.0,Phaeochroa cuvierii,Scaly-breasted Hummingbird,0.1520,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,26.0,29.0,Tolmomyias sulphurescens,Yellow-olive Flycatcher,0.1957,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,28.0,31.0,Amazilia tzacatl,Rufous-tailed Hummingbird,0.4015,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,36.0,39.0,Amazilia tzacatl,Rufous-tailed Hummingbird,0.1244,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,48.0,51.0,Cranioleuca erythrops,Red-faced Spinetail,0.1789,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_080100.wav,48.0,51.0,Amazilia tzacatl,Rufous-tailed Hummingbird,0.1531,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

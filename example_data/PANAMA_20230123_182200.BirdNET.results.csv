@@ -1,0 +1,9 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,24.0,27.0,Ramphastos ambiguus,Yellow-throated Toucan,0.2256,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,28.0,31.0,Myiodynastes maculatus,Streaked Flycatcher,0.1987,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,4.0,7.0,Tinamus major,Great Tinamou,0.5799,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,40.0,43.0,Tinamus major,Great Tinamou,0.6020,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,42.0,45.0,Tinamus major,Great Tinamou,0.5946,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,44.0,47.0,Tinamus major,Great Tinamou,0.1685,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,48.0,51.0,Myiodynastes maculatus,Streaked Flycatcher,0.1692,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_23_BCI\PANAMA_20230123_182200.wav,6.0,9.0,Tinamus major,Great Tinamou,0.6685,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

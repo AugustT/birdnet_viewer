@@ -1,0 +1,5 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_22_Gamboa\PANAMA_20230122_182100.wav,0,3.0,Tyrannus melancholicus,Tropical Kingbird,0.1590,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_22_Gamboa\PANAMA_20230122_182100.wav,2.0,5.0,Tyrannus melancholicus,Tropical Kingbird,0.2861,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_22_Gamboa\PANAMA_20230122_182100.wav,34.0,37.0,Tyrannus melancholicus,Tropical Kingbird,0.2048,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_22_Gamboa\PANAMA_20230122_182100.wav,36.0,39.0,Tyrannus melancholicus,Tropical Kingbird,0.1346,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

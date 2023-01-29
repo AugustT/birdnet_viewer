@@ -1,0 +1,8 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,42.0,45.0,Elaenia flavogaster,Yellow-bellied Elaenia,0.5174,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,44.0,47.0,Elaenia flavogaster,Yellow-bellied Elaenia,0.1091,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,46.0,49.0,Elaenia flavogaster,Yellow-bellied Elaenia,0.2719,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,50.0,53.0,Brotogeris jugularis,Orange-chinned Parakeet,0.1165,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,52.0,55.0,Brotogeris jugularis,Orange-chinned Parakeet,0.1033,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,54.0,57.0,Brotogeris jugularis,Orange-chinned Parakeet,0.2609,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_073100.wav,56.0,59.0,Brotogeris jugularis,Orange-chinned Parakeet,0.1318,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite

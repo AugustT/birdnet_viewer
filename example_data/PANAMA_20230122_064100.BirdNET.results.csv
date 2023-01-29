@@ -1,0 +1,15 @@
+filepath,start,end,scientific_name,common_name,confidence,lat,lon,week,overlap,sensitivity,min_conf,species_list,model
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,0,3.0,Vireo flavoviridis,Yellow-green Vireo,0.1341,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,10.0,13.0,Amazilia tzacatl,Rufous-tailed Hummingbird,0.2617,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,12.0,15.0,Amazilia tzacatl,Rufous-tailed Hummingbird,0.1168,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,2.0,5.0,Falco rufigularis,Bat Falcon,0.1063,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,26.0,29.0,Ramphocelus passerinii,Scarlet-rumped Tanager,0.1885,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,30.0,33.0,Thraupis episcopus,Blue-gray Tanager,0.2036,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,32.0,35.0,Thraupis episcopus,Blue-gray Tanager,0.2107,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,36.0,39.0,Ramphocelus passerinii,Scarlet-rumped Tanager,0.1361,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,4.0,7.0,Falco rufigularis,Bat Falcon,0.1123,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,42.0,45.0,Ramphocelus passerinii,Scarlet-rumped Tanager,0.2027,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,52.0,55.0,Ramphocelus passerinii,Scarlet-rumped Tanager,0.1062,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,54.0,57.0,Thraupis episcopus,Blue-gray Tanager,0.1528,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,56.0,59.0,Thraupis episcopus,Blue-gray Tanager,0.5424,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
+C:\Users\tomaug\Desktop\Panama 2023\Bird\23_01_21_Gamboa\PANAMA_20230122_064100.wav,8.0,11.0,Thraupis episcopus,Blue-gray Tanager,0.5632,9.1500,-79.8500,3,1.0,1.0,0.1,None,BirdNET_GLOBAL_2K_V2.1_Model_FP32.tflite
