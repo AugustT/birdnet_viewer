@@ -33,8 +33,13 @@ ui <- fluidPage(
                       max = 1, 
                       step = 0.01, 
                       value = 0.2),
-          numericInput('id', label = 'ID to play', step = 1, value = 1),
-          actionButton(inputId = 'play', label = 'Play')
+          numericInput('id', label = 'ID to play', step = 1, value = NULL),
+          conditionalPanel(condition = 'input.id > 0',
+                           actionButton(inputId = 'play',
+                                        label = 'Play'),
+                           downloadButton(outputId = 'download',
+                                          label = "Download"))
+          
         ),
 
         # Show a plot of the generated distribution
@@ -47,6 +52,9 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
+  
+  # values <- reactiveValues()
+  # values$wav <- NULL
 
   dat_all <- reactive({
     
@@ -97,10 +105,35 @@ server <- function(input, output) {
     }
   })
   
+  wav <- reactive({
+    if(!is.null(input$id)){
+      
+      dat_all <- dat_all()
+      clip_audio(df = dat_all,
+                 ID = input$id)  
+      
+    } else {
+      
+      NULL
+      
+    }
+  })
+    
   observeEvent(input$play, {
-    dat_all <- dat_all()
-    play_clip(df = dat_all,
-              ID = input$id)})
+      play(object = wav(), )
+    })
+  
+  output$download <- downloadHandler(
+    filename = function() {
+      paste(gsub(' ', '_', dat_all()[dat_all()$ID == input$id,'common_name']),
+            dat_all()[dat_all()$ID == input$id, 'start'],
+            basename(dat_all()[dat_all()$ID == input$id, 1]),
+            sep = '_')
+    },
+    content = function(file) {
+      writeWave(wav(), file)
+    }
+  )
 }
 
 # Run the application 

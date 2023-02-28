@@ -19,14 +19,14 @@ file_to_time <- function(filename){
   
 }
 
-# Given a clip ID play that clip
-play_clip <- function(df, ID){
+# Given a clip ID extract it from the wav
+clip_audio <- function(df, ID){
   
   print(df[df$ID == ID, 1])
   wav <- readWave(df[df$ID == ID, 1], 
                   from = df$start[df$ID == ID] - 1,
                   to = df$end[df$ID == ID] + 1,
                   units = 'seconds')
-  play(wav) 
+  return(wav)
   
 }
