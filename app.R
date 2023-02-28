@@ -11,6 +11,7 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 library(tuneR)
+library(dplyr)
 
 source('functions.R')
 
@@ -42,8 +43,10 @@ ui <- fluidPage(
           conditionalPanel(condition = 'input.id > 0',
                            actionButton(inputId = 'play',
                                         label = 'Play'),
-                           downloadButton(outputId = 'download',
-                                          label = "Download"))
+                           downloadButton(outputId = 'download_indiv',
+                                          label = "Download clip")),
+          downloadButton(outputId = 'download_best',
+                         label = "Download best calls")
           
         ),
 
@@ -242,6 +245,7 @@ server <- function(input, output) {
     }
   })
 
+  ##### Call download and playback #####
   
   # Return wav file for a given ID
   wav <- reactive({
@@ -264,7 +268,7 @@ server <- function(input, output) {
     })
   
   # Download a wav file
-  output$download <- downloadHandler(
+  output$download_indiv <- downloadHandler(
     filename = function() {
       paste(gsub(' ', '_', dat_all()[dat_all()$ID == input$id,'common_name']),
             dat_all()[dat_all()$ID == input$id, 'start'],
@@ -275,6 +279,42 @@ server <- function(input, output) {
       writeWave(wav(), file)
     }
   )
+  
+  # best audio snippets
+  bests <- reactive({
+    
+    bests <- dat_all() %>% group_by(common_name) %>% top_n(1, confidence)
+     
+  })
+  
+  
+  # Download the best call of each species currently over the threshold
+  output$download_best <- downloadHandler(
+    filename = function() {
+      paste0('best_calls_threshold_', input$thres, '.zip')
+    },
+    content = function(file) {
+      
+      tDir <- tempdir()
+      names <- NULL
+      
+      for(i in 1:nrow(bests())){
+        
+        wav <- clip_audio(ID = bests()$ID[i], df = as.data.frame(bests()))
+        wav_name <- paste0(gsub(' ', '_', bests()$common_name[i]),
+                           '_',
+                           bests()$confidence[i],
+                           '.wav')
+        writeWave(wav, filename = file.path(tDir, wav_name))
+        names <- c(names, file.path(tDir, wav_name))
+        
+      }
+
+      zip(zipfile = file, files = names, flags = '-j')
+
+   }
+  )
+  
 }
 
 # Run the application 
