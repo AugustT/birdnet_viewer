@@ -15,11 +15,16 @@ library(dplyr)
 library(timetk)
 library(stringr)
 library(data.table)
+library(shinyjs)
+library(shinythemes)
 
 source('functions.R')
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
+  
+    # add JS
+    useShinyjs(),
 
     # Application title
     titlePanel("Bird data viewer"),
@@ -37,7 +42,12 @@ ui <- fluidPage(
                       max = 1, 
                       step = 0.01, 
                       value = 0.2),
-          selectInput('time_interval', 
+          selectInput(inputId = 'species',
+                      label =  'Select Species',
+                      choices = c('All species'),
+                      selected = 'All species',
+                      multiple = FALSE),
+          selectInput('time_interval',
                       label = 'Aggregate data by...',
                       choices = c('Minute','Hour','Day','Week','Month'),
                       selected = 'Day',
@@ -67,7 +77,7 @@ ui <- fluidPage(
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   # values <- reactiveValues()
   # values$wav <- NULL
@@ -101,17 +111,19 @@ server <- function(input, output) {
       
     }
   })
-      
+
   dat_all <- reactive({
     withProgress(message = 'Thresholding data', value = 0, {
       x <- dat_all_raw()[dat_all_raw()$confidence >= input$thres, ]
+      if(input$species != 'All species'){
+        x <- x[x$common_name == input$species, ]
+      }
       incProgress(1)
     })
     x
   })
-      
-      
-  
+
+
   # Get all the species richness
   species_richness_all <- reactive({
     withProgress(message = 'Calculate species richness', value = 0, {
@@ -183,6 +195,17 @@ server <- function(input, output) {
   
   ##### PLOTS#####
   
+  # Show/hide plots
+  observe({
+    if (input$species != 'All species') {
+      hide("plot2")
+      hide("sp_rich_plot")
+    } else {
+      show("plot2")
+      show("sp_rich_plot")
+    }
+  })
+  
   # Plot of confidence and species over time
   output$plot1 <- renderPlotly({
       if(!is.null(dat_all())){
@@ -203,30 +226,35 @@ server <- function(input, output) {
         x <- ggplotly(plot1)
         incProgress(0.4)
       })
+      x
     }
   })
   
   # Plot of overall species call activity
   output$plot2 <- renderPlotly({
     if(!is.null(dat_all())){
-      withProgress(message = 'Building plot 2', value = 0, {
-        incProgress(0.1)
-        sp_rich <- as.data.frame(table(dat_all()$common_name), 
-                                 stringsAsFactors = FALSE)
-        colnames(sp_rich) <- c('Species', 'Count')
-        incProgress(0.1)
-        plot2 <- ggplot(sp_rich, aes(y = Count, 
-                                     x = reorder(Species, -Count), 
-                                     fill = Species)) +
-                    geom_bar(stat = "identity") +
-                    xlab("") +
-                    theme(axis.text.x = element_text(angle = 90, vjust = 0.05),
-                          legend.position = "none")
-        incProgress(0.4)
-        x <- ggplotly(plot2, tooltip = c("Species", "Count"))
-        incProgress(0.4)
-      })
-      x
+      if(input$species == 'All species'){
+        withProgress(message = 'Building plot 2', value = 0, {
+          incProgress(0.1)
+          sp_rich <- as.data.frame(table(dat_all()$common_name), 
+                                   stringsAsFactors = FALSE)
+          colnames(sp_rich) <- c('Species', 'Count')
+          incProgress(0.1)
+          plot2 <- ggplot(sp_rich, aes(y = Count, 
+                                       x = reorder(Species, -Count), 
+                                       fill = Species)) +
+                      geom_bar(stat = "identity") +
+                      xlab("") +
+                      theme(axis.text.x = element_text(angle = 90, vjust = 0.05),
+                            legend.position = "none")
+          incProgress(0.4)
+          x <- ggplotly(plot2, tooltip = c("Species", "Count"))
+          incProgress(0.4)
+        })
+        x
+      } else {
+        NULL
+      }
     }
   })
   
@@ -252,7 +280,7 @@ server <- function(input, output) {
   output$call_activity <- renderPlotly({
     
     if(!is.null(dat_all())){
-      withProgress(message = 'Building plot 3', value = 0, {
+      withProgress(message = 'Building plot 4', value = 0, {
         incProgress(0.1)
         plt <- ggplot(call_activity_by(), aes(x = time, y = value)) +
           geom_bar(stat = "identity") +
@@ -269,7 +297,7 @@ server <- function(input, output) {
   # dawn plot
   output$dawn_plot <- renderPlotly({
     if(!is.null(dat_all())){
-      withProgress(message = 'Building plot 3', value = 0, {
+      withProgress(message = 'Building plot 5', value = 0, {
         incProgress(0.1)
         dawn_plot <- ggplot(dawn(), aes(x = time_of_day, y = call_activity)) +
           geom_point() +
@@ -288,7 +316,7 @@ server <- function(input, output) {
   # dusk plot
   output$dusk_plot <- renderPlotly({
     if(!is.null(dat_all())){
-      withProgress(message = 'Building plot 3', value = 0, {
+      withProgress(message = 'Building plot 6', value = 0, {
         incProgress(0.1)
         dawn_plot <- ggplot(dusk(), aes(x = time_of_day, y = call_activity)) +
           geom_point() +
@@ -310,9 +338,8 @@ server <- function(input, output) {
   wav <- reactive({
     if(!is.null(input$id)){
       
-      dat_all <- dat_all()
-      clip_audio(df = dat_all,
-                 ID = input$id)  
+      clip_audio(df = dat_all(),
+                 index = input$id)  
       
     } else {
       
@@ -357,22 +384,36 @@ server <- function(input, output) {
       tDir <- tempdir()
       names <- NULL
       
-      for(i in 1:nrow(bests())){
-        
-        wav <- clip_audio(ID = bests()$ID[i], df = as.data.frame(bests()))
-        wav_name <- paste0(gsub(' ', '_', bests()$common_name[i]),
-                           '_',
-                           bests()$confidence[i],
-                           '.wav')
-        writeWave(wav, filename = file.path(tDir, wav_name))
-        names <- c(names, file.path(tDir, wav_name))
-        
-      }
+      withProgress(message = 'Bundling best calls', value = 0, {
+        for(i in 1:nrow(bests())){
+          incProgress(1/nrow(bests()))
+          wav <- clip_audio(index = bests()$ID[i], df = as.data.frame(bests()))
+          wav_name <- paste0(gsub(' ', '_', bests()$common_name[i]),
+                             '_',
+                             format(bests()$time[i], format = '%Y%M%d'),
+                             '_',
+                             bests()$confidence[i],
+                             '.wav')
+          writeWave(wav, filename = file.path(tDir, wav_name))
+          names <- c(names, file.path(tDir, wav_name))
+        }
+      })
 
-      zip(zipfile = file, files = names, flags = '-j')
-
+      withProgress(message = 'Zipping files', value = 0, {
+        incProgress(0.1)
+        x <- zip(zipfile = file, files = names, flags = '-j')
+        incProgress(0.9)
+      })
+      x
    }
   )
+  
+  ##### Render UI elements #####
+  observe({
+    updateSelectInput(session, "species",
+                      choices = c('All species',
+                                  sort(unique(dat_all_raw()$common_name[dat_all_raw()$confidence >= input$thres]))))
+    })
   
 }
 

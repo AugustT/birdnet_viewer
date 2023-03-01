@@ -20,12 +20,12 @@ file_to_time <- function(filename){
 }
 
 # Given a clip ID extract it from the wav
-clip_audio <- function(df, ID){
+clip_audio <- function(df, index){
   
-  print(df[df$ID == ID, 1])
-  wav <- readWave(df[df$ID == ID, 1], 
-                  from = df$start[df$ID == ID] - 1,
-                  to = df$end[df$ID == ID] + 1,
+  print(df[df$ID == index, 1])
+  wav <- readWave(as.character(df[df$ID == index, 1]), 
+                  from = df$start[df$ID == index] - 1,
+                  to = df$end[df$ID == index] + 1,
                   units = 'seconds')
   return(wav)
   
