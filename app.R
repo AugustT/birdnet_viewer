@@ -92,6 +92,10 @@ server <- function(input, output, session) {
       withProgress(message = 'Loading data', value = 0, {
         files <- input$files
         percentage <- 0
+        ### this might be a faster alternative???
+        # cl <- makeCluster(getOption("cl.cores", detectCores()-1))
+        # dat_all2 <- rbindlist(parallel::parLapply(cl = cl, X = files, fun = fread), use.names = T, fill = T)
+        # stopCluster(cl)
         dat <- lapply(files$datapath, FUN = function(x){
           percentage <<- percentage + 1/length(files$datapath)*100
           incProgress(1/length(files$datapath), detail = paste0("Progress: ",round(percentage), '%'))
