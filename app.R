@@ -14,6 +14,7 @@ library(tuneR)
 library(dplyr)
 library(timetk)
 library(stringr)
+library(data.table)
 
 source('functions.R')
 
@@ -80,10 +81,14 @@ server <- function(input, output) {
       
       withProgress(message = 'Loading data', value = 0, {
         files <- input$files
-        dat <- lapply(files$datapath, FUN = read.csv.row)
-        incProgress(0.4)
+        percentage <- 0
+        dat <- lapply(files$datapath, FUN = function(x){
+          percentage <<- percentage + 1/length(files$datapath)*100
+          incProgress(1/length(files$datapath), detail = paste0("Progress: ",round(percentage), '%'))
+          read.csv.row(x) 
+        })
         dat_all <- do.call(rbind, dat)
-        incProgress(0.4)
+        incProgress(0.1)
         colnam <- names(read.csv(files$datapath[1], header = TRUE)[1,])
         colnames(dat_all) <- colnam
         dat_all$time <- as.POSIXct(file_to_time(dat_all$filepath))
@@ -91,63 +96,77 @@ server <- function(input, output) {
         dat_all$ID <- 1:nrow(dat_all) 
         incProgress(0.1)
       })
+      
+      return(dat_all)
+      
     }
   })
       
   dat_all <- reactive({
-    
-    dat_all_raw()[dat_all_raw()$confidence >= input$thres, ]
-
+    withProgress(message = 'Thresholding data', value = 0, {
+      x <- dat_all_raw()[dat_all_raw()$confidence >= input$thres, ]
+      incProgress(1)
+    })
+    x
   })
       
       
   
   # Get all the species richness
   species_richness_all <- reactive({
-    
-    dat_all() %>% 
-      group_by(filepath) %>%
-      summarise(species_richness = n_distinct(common_name))
-    
+    withProgress(message = 'Calculate species richness', value = 0, {
+      x <- dat_all() %>% 
+        group_by(filepath) %>%
+        summarise(species_richness = n_distinct(common_name))
+      incProgress(1)
+    })
+    x
   })
   
   # Group species richness by time period
   species_richness_by <- reactive({
-    
-    dat_all() %>% 
+    withProgress(message = 'Calculate species by time', value = 0, {
+      x <- dat_all() %>% 
       summarise_by_time(.date_var = time,
                         .by = tolower(input$time_interval),
                         value = n_distinct(common_name))
-    
+      incProgress(1)
+    })
+    x
   })
   
   # Get all call activity
   call_activity_all <- reactive({
-    
-    dat_all() %>%
-    group_by(filepath) %>%
-    summarise(call_activity = n())
-    
+    withProgress(message = 'Calculate call activity', value = 0, {
+      x <- dat_all() %>%
+      group_by(filepath) %>%
+      summarise(call_activity = n())
+      incProgress(1)
+    })
+    x
   })
   
   # Group call activity by time period
   call_activity_by <- reactive({
-    
-    dat_all() %>% 
-    summarise_by_time(.date_var = time,
-                      .by = tolower(input$time_interval),
-                      value = n())
-  
+    withProgress(message = 'Calculate call activity by time', value = 0, {
+      x <- dat_all() %>% 
+      summarise_by_time(.date_var = time,
+                        .by = tolower(input$time_interval),
+                        value = n())
+      incProgress(1)
+    })
+    x
   })
   
   # Combined summary data
   summary_data <- reactive({
-    
-    file_time <- unique(dat_all()[, c("filepath", "time_of_day")])
-    
-    full_join(file_time, call_activity_all(), by = 'filepath') %>%
-      full_join(species_richness_all(), by = 'filepath')
-    
+    withProgress(message = 'Build summary data', value = 0, {
+      file_time <- unique(dat_all()[, c("filepath", "time_of_day")])
+      x <- full_join(file_time, call_activity_all(), by = 'filepath') %>%
+        full_join(species_richness_all(), by = 'filepath')
+      incProgress(1)
+    })
+    x
   })
   
   # Dawn and dusk data
@@ -166,37 +185,48 @@ server <- function(input, output) {
   
   # Plot of confidence and species over time
   output$plot1 <- renderPlotly({
-    if(!is.null(dat_all())){
-      plot1 <- ggplot(dat_all(),
-                     aes(y = confidence,
-                         x = time, 
-                         col = common_name,
-                         text = ID)) +
-        geom_point() +
-        ylim(0, 1) +
-        ylab('Confidence') +
-        xlab('Time') +
-        theme(legend.position = "none")
-      ggplotly(plot1)
+      if(!is.null(dat_all())){
+        withProgress(message = 'Building plot 1', value = 0, {
+          
+        incProgress(0.1)
+        plot1 <- ggplot(dat_all(),
+                       aes(y = confidence,
+                           x = time, 
+                           col = common_name,
+                           text = ID)) +
+          geom_point() +
+          ylim(0, 1) +
+          ylab('Confidence') +
+          xlab('Time') +
+          theme(legend.position = "none")
+        incProgress(0.5)
+        x <- ggplotly(plot1)
+        incProgress(0.4)
+      })
     }
   })
   
   # Plot of overall species call activity
   output$plot2 <- renderPlotly({
     if(!is.null(dat_all())){
-      dat_all <- dat_all()
-      sp_rich <- as.data.frame(table(dat_all$common_name), 
-                               stringsAsFactors = FALSE)
-      colnames(sp_rich) <- c('Species', 'Count')
-      
-      plot2 <- ggplot(sp_rich, aes(y = Count, 
-                                   x = reorder(Species, -Count), 
-                                   fill = Species)) +
-                  geom_bar(stat = "identity") +
-                  xlab("") +
-                  theme(axis.text.x = element_text(angle = 90, vjust = 0.05),
-                        legend.position = "none")
-      ggplotly(plot2)
+      withProgress(message = 'Building plot 2', value = 0, {
+        incProgress(0.1)
+        sp_rich <- as.data.frame(table(dat_all()$common_name), 
+                                 stringsAsFactors = FALSE)
+        colnames(sp_rich) <- c('Species', 'Count')
+        incProgress(0.1)
+        plot2 <- ggplot(sp_rich, aes(y = Count, 
+                                     x = reorder(Species, -Count), 
+                                     fill = Species)) +
+                    geom_bar(stat = "identity") +
+                    xlab("") +
+                    theme(axis.text.x = element_text(angle = 90, vjust = 0.05),
+                          legend.position = "none")
+        incProgress(0.4)
+        x <- ggplotly(plot2, tooltip = c("Species", "Count"))
+        incProgress(0.4)
+      })
+      x
     }
   })
   
@@ -204,55 +234,73 @@ server <- function(input, output) {
   output$sp_rich_plot <- renderPlotly({
     
     if(!is.null(dat_all())){
-    
-      plt <- ggplot(species_richness_by(), aes(x = time, y = value)) +
-        geom_bar(stat = "identity") +
-        xlab(str_to_title(input$time_interval)) +
-        ylab('Species richness')
-      ggplotly(plt)
-      
+      withProgress(message = 'Building plot 3', value = 0, {
+        incProgress(0.1)
+        plt <- ggplot(species_richness_by(), aes(x = time, y = value)) +
+          geom_bar(stat = "identity") +
+          xlab(str_to_title(input$time_interval)) +
+          ylab('Species richness')
+        incProgress(0.4)
+        x <- ggplotly(plt)
+        incProgress(0.5)
+      })
+      x
     }
-    
   })
   
   # Plot call activity
   output$call_activity <- renderPlotly({
     
     if(!is.null(dat_all())){
-      
-      plt <- ggplot(call_activity_by(), aes(x = time, y = value)) +
-        geom_bar(stat = "identity") +
-        xlab(str_to_title(input$time_interval)) +
-        ylab('Call activity')
-      ggplotly(plt)
-      
+      withProgress(message = 'Building plot 3', value = 0, {
+        incProgress(0.1)
+        plt <- ggplot(call_activity_by(), aes(x = time, y = value)) +
+          geom_bar(stat = "identity") +
+          xlab(str_to_title(input$time_interval)) +
+          ylab('Call activity')
+        incProgress(0.4)
+        x <- ggplotly(plt)
+        incProgress(0.5)
+      })
+      x
     }
-    
   })
   
   # dawn plot
   output$dawn_plot <- renderPlotly({
     if(!is.null(dat_all())){
-      dawn_plot <- ggplot(dawn(), aes(x = time_of_day, y = call_activity)) +
-        geom_point() +
-        geom_smooth(method="auto", se=TRUE, fullrange=FALSE, level=0.95) +
-        ggtitle('Aggregate dawn activity trend') +
-        xlab('Time') +
-        ylab('Number of calls')
-      ggplotly(dawn_plot)
+      withProgress(message = 'Building plot 3', value = 0, {
+        incProgress(0.1)
+        dawn_plot <- ggplot(dawn(), aes(x = time_of_day, y = call_activity)) +
+          geom_point() +
+          geom_smooth(method="auto", se=TRUE, fullrange=FALSE, level=0.95) +
+          ggtitle('Aggregate dawn activity trend') +
+          xlab('Time') +
+          ylab('Number of calls')
+        incProgress(0.4)
+        x <- ggplotly(dawn_plot)
+        incProgress(0.5)
+      })
+      x
     }
   })
   
   # dusk plot
   output$dusk_plot <- renderPlotly({
     if(!is.null(dat_all())){
-      dusk_plot <- ggplot(dusk(), aes(x = time_of_day, y = call_activity)) +
-        geom_point() +
-        geom_smooth(method="auto", se=TRUE, fullrange=FALSE, level=0.95) +
-        ggtitle('Aggregate dusk activity trend') +
-        xlab('Time') +
-        ylab('Number of calls')
-      ggplotly(dusk_plot)    
+      withProgress(message = 'Building plot 3', value = 0, {
+        incProgress(0.1)
+        dawn_plot <- ggplot(dusk(), aes(x = time_of_day, y = call_activity)) +
+          geom_point() +
+          geom_smooth(method="auto", se=TRUE, fullrange=FALSE, level=0.95) +
+          ggtitle('Aggregate dusk activity trend') +
+          xlab('Time') +
+          ylab('Number of calls')
+        incProgress(0.4)
+        x <- ggplotly(dawn_plot)
+        incProgress(0.5)
+      })
+      x
     }
   })
 

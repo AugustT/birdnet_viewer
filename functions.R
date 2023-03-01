@@ -1,6 +1,6 @@
 # Read these all in and set to a data.frame
 read.csv.row <- function(file){
-  x <- read.csv(file, header = TRUE, stringsAsFactors = FALSE)
+  x <- data.table::fread(file, header = TRUE, stringsAsFactors = FALSE)
   if(nrow(x) > 0){
     return(x)
   } else {
