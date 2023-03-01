@@ -12,6 +12,8 @@ library(ggplot2)
 library(plotly)
 library(tuneR)
 library(dplyr)
+library(timetk)
+library(stringr)
 
 source('functions.R')
 
@@ -72,24 +74,33 @@ server <- function(input, output) {
   ##### DATA #####
   
   # Format all the data together
-  dat_all <- reactive({
+  dat_all_raw <- reactive({
     
     if(!is.null(input$files)){
       
-      files <- input$files
-      dat <- lapply(files$datapath, FUN = read.csv.row)
-      dat_all <- do.call(rbind, dat)
-      colnam <- names(read.csv(files$datapath[1], header = TRUE)[1,])
-      colnames(dat_all) <- colnam
-      dat_all$time <- as.POSIXct(file_to_time(dat_all$filepath))
-      dat_all$time_of_day <- as.POSIXct(format(dat_all$time, "%H:%M"), format = '%H:%M')
-      dat_all$ID <- 1:nrow(dat_all) 
-      dat_all <- dat_all[dat_all$confidence >= input$thres, ]
-      dat_all
-      
+      withProgress(message = 'Loading data', value = 0, {
+        files <- input$files
+        dat <- lapply(files$datapath, FUN = read.csv.row)
+        incProgress(0.4)
+        dat_all <- do.call(rbind, dat)
+        incProgress(0.4)
+        colnam <- names(read.csv(files$datapath[1], header = TRUE)[1,])
+        colnames(dat_all) <- colnam
+        dat_all$time <- as.POSIXct(file_to_time(dat_all$filepath))
+        dat_all$time_of_day <- as.POSIXct(format(dat_all$time, "%H:%M"), format = '%H:%M')
+        dat_all$ID <- 1:nrow(dat_all) 
+        incProgress(0.1)
+      })
     }
-    
   })
+      
+  dat_all <- reactive({
+    
+    dat_all_raw()[dat_all_raw()$confidence >= input$thres, ]
+
+  })
+      
+      
   
   # Get all the species richness
   species_richness_all <- reactive({
